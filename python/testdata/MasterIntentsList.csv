@@ -1,0 +1,94 @@
+Action (action),Data Type (dataType) (case-insensitive),Sending Widget,Receiving Widget,Comments
+General Common Intents,,,,
+View,<model key/mime type of item to view>,<any>,<any>,"Used to indicate a desire to view a specific item (aritifact, entity, etc). The expectation is that sending this intent will result in the central widget switching to the primary display widget for the selected item. Fired when double clicking a search result, double clicking a node in Link Analysis, etc"
+Selection,<model key/mime type of selected item>,<any>,<any>,"Used to indicate a desire to preview a specific item (aritifact, entity, etc). The expectation is that sending this intent will result in the one of the right side widget switching to the supplementary display widget for the selected item. Fired when single clicking a search re, single clicking a node in Link Analysis, etc"
+Dashboard Intents,,,,
+Search,<selected workspace>,Dashboard,<any>,"Broadcasts when a search is conducted via hitting enter, clicking the search button or selecting an autocomplete item."
+SearchAutoComplete,application/json,Dashboard,<any>,Broadcasts as a user types in the search box. While all widgets can take advantage of this intent it is suggested that a single background widget that handles UCD wide searches handles this and sends the resulting values via the DisplaySearchAutoComplete intent.
+DisplaySearchAutoComplete,application/json,<any>,Dashboard,"Broadcasts a list of available autocomplete items for the search box to display. The JSON contains text, header and headerIconUrl properties; only text is required."
+SwitchWorkspaceView,<selected workspace>,Dashboard and <any>,<any>,Broadcast by the dashboard when a workspace navigation item is clicked on. All widgets accepting this intent should now focus themselves. This intent can also be sent by individual widgets in response to user action to facilitate the users workflow. For example the when an intent is sent to open a Link Analysis chart the Link Analysis widget may want to send a switch workspace intent so that the supplementary widgets (asset bar and mini viewer) are also activated.
+Facets Intents,,,,
+SetFacets,<selected workspace>,<any>,Facet Widget,Facet widget populated with facet hierarchy as defined by json structure. Multiple categories can be created and categories can be defined as multiselect or single select.
+ApplyFacets,<selected workspace>,Facet Widget,<any>,Intent is sent when a user adds or removes a new facet and should result in the receving widget pairing down the result set as well as sending a new updated list of facets.
+DCGS Docs Intents,,,,
+SaveFile,*,<any>,DCGSDocs Center,The passed in data will be saved to the users private docs with a fileType of the intent dataType.
+Map Intents,,,,
+Selection,application/vnd.google-earth.kml+xml,<any>,Mini Map,Mini Map widget activates and displays the KML as a new layer with the layer name being the name sent as part of the intent.
+View,application/vnd.google-earth.kml+xml,<any>,Main Map,Main Map widget activates and displays the KML as a new layer with the layer name being the name sent as part of the intent.
+Document Viewer Intents,,,,
+Selection,?,<any>,Document Viewer,Activate Doc Preview widget with data from the selected doc
+View,?,<any>,Document Viewer,Activates Doc Viewer center widget and displays the contents of the selected document
+NE5 Intents,,,,
+Selection,application/vnd.generic-entity,<any>,42Six Entity Management Baseball Card Widget,Entity Management baseball card widget activates and displays the selected entity
+View,application/vnd.generic-entity,<any>,42Six Entity Management Viewer Widget,Main Entity Management widget activates and displays the selected entity
+Selection,application/vnd.ne5.linkdiagram+json,<any>,NE5 Mini chart,Activates NE5 minigraph and displays the selected Link Analysis chart
+View,application/vnd.ne5.linkdiagram+json,<any>,NE5 Main,Main NE5 widget activates and displays the selected Link Analysis chart
+EvR Symbol Server Intents,,,,
+LaunchSymbolSelectorUI,<SendingWidget Identifier>,<any>,SymbolSelector,Broadcast by Sending Widget to Launch Symbol Selector Widget.  The intent dataType identifies the sending Widget.
+ReturnSymbolUI,<ReceivingWidget Identifier>,SymbolSelector,<any>,Broadcast by Symbol Selector Widget resulting following user initiated completion of symbol selection within UI. The selected symbol is sent to receiving widget. The intent dataType identifies original requester that launched Symbol Selector
+RequestSymbol,<SendingWidget Identifier>,<any>,SymbolSelector,Broadcast by Sending Widget to invoke Symbol Selector Widget to return Symbol representation of passed Symbol identifier. The intent dataType identifies the sending Widget and is used for the response.
+ReturnSymbol,<ReceivingWidget Identifier>,SymbolSelector,<any>,Broadcast by Symbol Selector Widget as a response to RequestSymbol that includes the representation of the requested Symbol. The intent dataType identifies the original requesting Widget
+RequestSymbolList,<SendingWidget Identifier>,<any>,SymbolSelector,Broadcast by Sending Widget to invoke Symbol Selector Widget to return a list of Symbol representations corresponding the list of passed Symbol identifiers.  The intent dataType identifies the sending Widget and be used for the response.
+ReturnSymbolList,<ReceivingWidget Identifier>,SymbolSelector,<any>,Broadcast by Symbol Selector Widget as a response to RequestSymbolList that includes a list of the representations of the requested Symbol. Intent dataType identifies the original requesting Widget
+EvR Common Intent Brodcaster Intents,,,,
+Edit,application/vnd.evr.report,<any>,"EvR Editor
+", Broadcast by Sending Widget to launch the EvR Editor Widget.
+HLT Intents,,,,
+hlt-load-media,application/vnd.hlt.media.data,HLT Media Browser,HLT Media Viewer,"Causes HLT Media Viewer to load report data and audio. Also, causes the Media Viewer to focus."
+hlt-request-media,application/vnd.hlt.media.index,HLT Media Viewer,HLT Media Browser,Requests report id from HLT Media Browser so that the HLT Media Viewer can load that report's data and audio.
+SwitchWorkspaceView,hlt-media-browser,Dashboard,HLT Media Browser,"When the HLT link on the dashboard is clicked, this intent causes the HLT Media Browser to focus."
+TES Collection Request Browser Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.cr+browser,<any>,TES Collection Request Browser ,Used to activate the TES Collection Request Browser 
+create,application/vnd.owf.ist.cr+json,TES Collection Request Browser ,<any>,Signal that the user wishes to create a new Collection Request
+edit,application/vnd.owf.ist.cr+json,TES Collection Request Browser ,<any>,Signal that the user wishes to edit the selected Collection Request
+updateNotification,application/vnd.owf.ist.cr+json,<any>,TES Collection Request Browser ,Used to inform the browser to refresh items from the server
+TES Collection Request Editor Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.cr+editor,<any>,TES Collection Request Editor ,Used to activate the TES Collection Request Editor 
+create,application/vnd.owf.ist.cr+json,<any>,<any>,Signal that the user wishes to create a new Collection Request
+edit,application/vnd.owf.ist.cr+json,<any>,TES Collection Request Editor ,Signal that the user wishes to edit the selected Collection Request
+updateNotification,application/vnd.owf.ist.cr+json,<any>,<any>,Used to inform the browser to refresh items from the server
+TES Exploitation Request Browser Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.exp+browser,<any>,TES Exploitation Request Browser ,Used to activate the TES Exploitation Request Browser
+create,application/vnd.owf.ist.exp+json,<any>,<any>,Signal that the user wishes to create a new  Exploitation Request 
+edit,application/vnd.owf.ist.exp+json,<any>,<any>,Signal that the user wishes to edit the selected Exploitation Request
+updateNotification,application/vnd.owf.ist.exp+json,<any>,TES Exploitation Request Browser ,Used to inform the browser to refresh items from the server
+TES Exploitation Request Editor Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.exp+editor,<any>,TES Exploitation Request Editor ,Used to activate the TES Exploitation Request Editor 
+create,application/vnd.owf.ist.exp+json,<any>,<any>,Signal that the user wishes to create a new Exploitation Request
+edit,application/vnd.owf.ist.exp+json,<any>,TES Exploitation Request Editor ,Signal that the user wishes to edit the selected Exploitation Request
+updateNotification,application/vnd.owf.ist.exp+json,<any>,<any>,Used to inform the browser to refresh items from the server
+TES PIR Browser Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.pir+browser,<any>,TES PIR Browser ,Used to activate the TES PIR Browser 
+create,application/vnd.owf.ist.pir+json,<any>,<any>,Signal that the user wishes to create a new PIR
+edit,application/vnd.owf.ist.pir+json,<any>,<any>,Signal that the user wishes to edit the selected PIR
+updateNotification,application/vnd.owf.ist.pir+json,<any>,TES PIR Browser ,Used to inform the browser to refresh items from the server
+TES PIR Editor Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.pir+editor,<any>,TES PIR Editor ,Used to activate the TES PIR Editor 
+create,application/vnd.owf.ist.pir+json,<any>,<any>,Signal that the user wishes to create a new PIR Document
+edit,application/vnd.owf.ist.pir+json,<any>,TES PIR Editor ,Signal that the user wishes to edit the selected PIR Document
+updateNotification,application/vnd.owf.ist.pir+json,<any>,<any>,Used to inform the browser to refresh items from the server
+TES CXP Browser Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.cxp+browser,<any>,TES CXP Browser ,Used to activate the TES CXP Browser 
+create,application/vnd.owf.ist.cxp+json,<any>,<any>,Signal that the user wishes to create a new CXP
+edit,application/vnd.owf.ist.cxp+json,<any>,<any>,Signal that the user wishes to edit the selected CXP
+updateNotification,application/vnd.owf.ist.cxp+json,<any>,TES CXP Browser ,Used to inform the browser to refresh items from the server
+TES CXP Editor Intents,,,,
+activate,application/vnd.owf.ist*,<any>,<any IST>,Used to wildcard activate any other IST widget in future implementations
+activate,application/vnd.owf.ist.cxp+editor,<any>,TES CXP Editor ,Used to activate the TES CXP Editor 
+create,application/vnd.owf.ist.cxp+json,<any>,<any>,Signal that the user wishes to create a new CXP
+edit,application/vnd.owf.ist.cxp+json,<any>,<any>,Signal that the user wishes to edit the selected CXP
+updateNotification,application/vnd.owf.ist.cr+json,<any>,TES CXP Editor ,Used to inform the browser to refresh items from the server
+create,application/vnd.owf.ist.exp+json,TES CXP Editor ,TES Exploitation Request Editor ,Signal that the user wishes to create a new Exploitation Request
+edit,application/vnd.owf.ist.exp+json,TES CXP Editor ,TES Exploitation Request Editor ,Signal that the user wishes to edit the selected Exploitation Request
+create,application/vnd.owf.ist.cr+json,TES CXP Editor ,TES Collection Request Editor ,Signal that the user wishes to create a new Collection Request
+edit,application/vnd.owf.ist.cr+json,TES CXP Editor ,TES Collection Request Editor ,Signal that the user wishes to edit the selected Collection Request
+addCollectionRequestToMission,application/vnd.owf.ist.cr+json,TES CXP Editor ,TES ACTDF Message Tester,Signal that the user wishes to push the selected Collection Request to the ACTDF test
+TES ACTDF Message Tester,,,,
+addCollectionRequestToMission,application/vnd.owf.ist.cr+json,<any>,TES ACTDF Message Tester,Signal that the ACTDF tester received a Collection Request

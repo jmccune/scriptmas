@@ -1,0 +1,112 @@
+[
+  {
+    "description": "Facet widget populated with facet hierarchy as defined by json structure. Multiple categories can be created and categories can be defined as multiselect or single select.",
+    "action": "SetFacets",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "The passed in data will be saved to the users private docs with a fileType of the intent dataType.",
+    "action": "SaveFile",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Requests report id from HLT Media Browser so that the HLT Media Viewer can load that report's data and audio.",
+    "action": "hlt-request-media",
+    "sendingWidget": "HLT Media Viewer"
+  },
+  {
+    "description": "Broadcast by Symbol Selector Widget resulting following user initiated completion of symbol selection within UI. The selected symbol is sent to receiving widget. The intent dataType identifies original requester that launched Symbol Selector",
+    "action": "ReturnSymbolUI",
+    "sendingWidget": "SymbolSelector"
+  },
+  {
+    "description": "Signal that the user wishes to edit the selected Collection Request",
+    "action": "edit",
+    "sendingWidget": "TES CXP Editor"
+  },
+  {
+    "description": "Broadcasts a list of available autocomplete items for the search box to display. The JSON contains text",
+    "action": "DisplaySearchAutoComplete",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Activates NE5 minigraph and displays the selected Link Analysis chart",
+    "action": "Selection",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Broadcast by Sending Widget to invoke Symbol Selector Widget to return a list of Symbol representations corresponding the list of passed Symbol identifiers.  The intent dataType identifies the sending Widget and be used for the response.",
+    "action": "RequestSymbolList",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Used to inform the browser to refresh items from the server",
+    "action": "updateNotification",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "\"When the HLT link on the dashboard is clicked",
+    "action": "SwitchWorkspaceView",
+    "sendingWidget": "Dashboard"
+  },
+  {
+    "description": "Signal that the user wishes to create a new Collection Request",
+    "action": "create",
+    "sendingWidget": "TES CXP Editor"
+  },
+  {
+    "description": "Broadcasts as a user types in the search box. While all widgets can take advantage of this intent it is suggested that a single background widget that handles UCD wide searches handles this and sends the resulting values via the DisplaySearchAutoComplete intent.",
+    "action": "SearchAutoComplete",
+    "sendingWidget": "Dashboard"
+  },
+  {
+    "description": "\"Causes HLT Media Viewer to load report data and audio. Also",
+    "action": "hlt-load-media",
+    "sendingWidget": "HLT Media Browser"
+  },
+  {
+    "description": "Broadcast by Sending Widget to Launch Symbol Selector Widget.  The intent dataType identifies the sending Widget.",
+    "action": "LaunchSymbolSelectorUI",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Main NE5 widget activates and displays the selected Link Analysis chart",
+    "action": "View",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Broadcast by Sending Widget to invoke Symbol Selector Widget to return Symbol representation of passed Symbol identifier. The intent dataType identifies the sending Widget and is used for the response.",
+    "action": "RequestSymbol",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "\"Broadcasts when a search is conducted via hitting enter",
+    "action": "Search",
+    "sendingWidget": "Dashboard"
+  },
+  {
+    "description": "Broadcast by Symbol Selector Widget as a response to RequestSymbol that includes the representation of the requested Symbol. The intent dataType identifies the original requesting Widget",
+    "action": "ReturnSymbol",
+    "sendingWidget": "SymbolSelector"
+  },
+  {
+    "description": "Intent is sent when a user adds or removes a new facet and should result in the receving widget pairing down the result set as well as sending a new updated list of facets.",
+    "action": "ApplyFacets",
+    "sendingWidget": "Facet Widget"
+  },
+  {
+    "description": "Broadcast by Symbol Selector Widget as a response to RequestSymbolList that includes a list of the representations of the requested Symbol. Intent dataType identifies the original requesting Widget",
+    "action": "ReturnSymbolList",
+    "sendingWidget": "SymbolSelector"
+  },
+  {
+    "description": "Used to activate the TES CXP Editor",
+    "action": "activate",
+    "sendingWidget": "<any>"
+  },
+  {
+    "description": "Signal that the ACTDF tester received a Collection Request",
+    "action": "addCollectionRequestToMission",
+    "sendingWidget": "<any>"
+  }
+]

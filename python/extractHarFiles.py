@@ -32,6 +32,10 @@ def processHarFile(filename,targetDir):
 
   print "READ FILENAME: "+filename
   #print myfile
+  #print "**** DEBUG****"
+  #print json.dumps(myfile)[0:10000]
+  #print "**** DEBUG****"
+
   for entry in myfile['log']['entries']:
 
     url = entry['request']['url']
@@ -41,7 +45,13 @@ def processHarFile(filename,targetDir):
     print " ------------------------------------------"
     response = entry['response']
 
-    responseFile = response['content']['text']
+  
+
+    responseFile = response['content']
+    if (not 'text' in responseFile):
+      continue
+
+    responseFile = responseFile['text']
     responseFile = responseFile.encode("utf-8")
     responseFile = str(responseFile)
 

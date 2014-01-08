@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# PURPOSE:
+#  To restructure the AMPERE project into the desired deployment 
+#  and run time structure for OIG purposes.
+#  
+#  At the end of this script, there should be a directory structure
+#  that looks like:
+#
+#      /opt/ampere/
+#         + etc
+#            + pki
+#            + anubis
+#	  + anubis (reference source)
+#         + jars
+#            + anubis-<Version>.jar
+#         + logs
+#
+# ASSUMPTIONS:
+# This script assumes that the directory /opt/ampere exists
+# is owned by the appropriate user (e.g. oigdev) and that this 
+# script is run as that user.
+#
+# We assume that the AMPERE project has been unpacked/installed
+# to /opt/ampere/AMP
+#
+#
+verify()
+
+
+
+cd /opt/ampere/AMP
+

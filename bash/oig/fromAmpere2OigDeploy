@@ -25,9 +25,73 @@
 # to /opt/ampere/AMP
 #
 #
-verify()
+
+# ------ CONFIGURATION -----------
+homedir="/opt/ampere/test"
+
+# ------ END CONFIGURATION -----------
+
+# ------ HELPER METHODS -----------
+function verifyCwdIs() {
+   verificationDirectory=$1
+   varCwd="$(pwd)"
+   #echo "THIS IS THE TEST:  >$varCwd< vs >$verificationDirectory<"
+   if [ "$varCwd" != "$verificationDirectory" ]; then
+      echo "Not in expected directory: $verificationDirectory"
+      echo "ABORTING"
+      exit -1
+   fi 
+}
+
+function verifyDirExists() {
+  if [ ! -d $1 ]; then
+    echo "Missing directory>> $1"
+    echo "ABORTING"
+    exit -1  
+  fi
+}
+
+function createDirIfNotExists() {  
+  if [ ! -d $1 ]; then
+    mkdir "$1"
+  fi
+}
+# ------ END HELPER METHODS -----
 
 
 
-cd /opt/ampere/AMP
+# ----- VERIFIY  ------
+verifyDirExists "$homedir/AMP2"
+
+# ----- ANUBIS SETUP ------
+
+cd $homedir
+verifyCwdIs "$homedir"
+
+createDirIfNotExists "$homedir/etc"
+createDirIfNotExists "$homedir/etc/pki"
+createDirIfNotExists "$homedir/etc/anubis"
+createDirIfNotExists "$homedir/logs"
+createDirIfNotExists "$homedir/jars"
+
+
+cd $homedir/AMP/java/services/anubis/config
+verifyCwdIs "$homedir/AMP/java/services/anubis/"
+
+cp -r *
+
+
+#First build basic AMPERE to make sure 
+# all appropriate jars are available for the Anubis build
+cd $homedir/AMP/java
+verifyCwdIs "$homedir/AMP/java"
+mvn install -DskipTests
+
+# Now build the Anubis Service
+cd $homedir/AMP/java/services/anubis
+verifyCwdIs "$homedir/AMP/java/services/anbuis"
+mvn install -DskipTests
+
+
+
 

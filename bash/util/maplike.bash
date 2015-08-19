@@ -1,5 +1,9 @@
 #!/bin/bash
+# This utiltity is useful only as the function below is adapted to 
+# do something as it is processed.   (E.g. this is a prototype
+# that is copied somewhere where the key value then does something useful.)
 
+#
 #NOTE:  Spaces are ignored
 #       ":" must be the separator between the key and the value.
 #       (e.g. the key cannot contain a :)

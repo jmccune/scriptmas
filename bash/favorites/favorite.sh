@@ -32,5 +32,5 @@ fi
 
 cwd=$(pwd);
 echo "CREATING FAVORITE $1=$cwd"
-echo "$1=$cwd" >> $FAVORITES_FILE
+echo "export $1=$cwd" >> $FAVORITES_FILE
 source $FAVORITES_FILE
